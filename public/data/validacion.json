@@ -1,0 +1,32 @@
+{
+  "generado_utc": "2026-11-14T20:21:22Z",
+  "mapa": "JPL CTX DEM 20 m (M20_JezeroCrater_CTXDEM_20m)",
+  "metodo": "Interpolación bilineal del DEM a resolución completa en la lon/lat de cada punto; diferencia = mapa − elevación reportada por la misión.",
+  "interpretacion": "Diferencias de pocos metros confirman que coordenadas, proyección y alturas están bien alineadas. El DEM de 20 m suaviza rocas y bordes, por eso no es cero.",
+  "resultados": [
+    {
+      "capa": "rover_paradas (elev_geoid)",
+      "puntos": 708,
+      "dif_media_m": -0.9,
+      "dif_mediana_abs_m": 1.93,
+      "dif_p95_abs_m": 6.01,
+      "dif_max_abs_m": 12.17
+    },
+    {
+      "capa": "heli_aerodromos (Elev_Geoid)",
+      "puntos": 73,
+      "dif_media_m": 0.42,
+      "dif_mediana_abs_m": 1.77,
+      "dif_p95_abs_m": 3.86,
+      "dif_max_abs_m": 5.76
+    },
+    {
+      "capa": "muestras_roca (elev)",
+      "puntos": 22,
+      "dif_media_m": -1.67,
+      "dif_mediana_abs_m": 1.83,
+      "dif_p95_abs_m": 9.62,
+      "dif_max_abs_m": 17.38
+    }
+  ]
+}

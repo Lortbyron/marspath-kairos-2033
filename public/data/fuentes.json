@@ -1,0 +1,542 @@
+{
+  "proyecto": "MarsPath · NASA Space Apps reto 11 · cráter Jezero",
+  "generado_utc": "2026-11-14T20:21:22Z",
+  "aviso": "Herramienta educativa y de demostración basada en datos públicos de NASA/USGS. No es una herramienta autorizada para la seguridad de misiones reales.",
+  "crater": {
+    "nombre": "Jezero",
+    "centro_lon": 77.6873,
+    "centro_lat": 18.4082,
+    "diametro_km": 47.5212,
+    "fuente": "IAU / USGS Gazetteer of Planetary Nomenclature",
+    "url": "https://planetarynames.wr.usgs.gov/Feature/14300"
+  },
+  "sistema_referencia": {
+    "cuerpo": "Marte",
+    "datum": "Mars 2000 esfera IAU",
+    "radio_m": 3396190.0,
+    "longitudes": "este positivo, -180..180",
+    "alturas": "metros respecto al areoide (geoide marciano)"
+  },
+  "rasters": [
+    {
+      "id": "relieve_jpl_ctx",
+      "titulo": "Relieve del cráter Jezero",
+      "tipo": "raster",
+      "mision": "MRO · CTX (estéreo)",
+      "proveedor": "NASA/JPL · Mars 2020 Science Investigation Maps (vía USGS Astrogeology)",
+      "resolucion_original_m": 20,
+      "proyeccion": "Jezero_Crater_Projection (equirectangular, paralelo 18.4663°, esfera IAU 3 396 190 m)",
+      "archivo": "relieve/jezero_relieve.json",
+      "derivado": "remuestreo por promedio a 1024 y 2048 px; cuantizado a Uint16",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXDEM_20m.tif",
+        "bytes": 90345300,
+        "sha256": "ba7f706ea1b5d63a562f28a7dcf7a7f3c79bce7f048e6974b57e8a33c30d1ba2",
+        "descargado_utc": "2026-11-14T20:16:04Z"
+      }
+    },
+    {
+      "id": "textura_jpl_ctx",
+      "titulo": "Ortomosaico CTX (foto orbital)",
+      "tipo": "raster",
+      "mision": "MRO · CTX",
+      "proveedor": "NASA/JPL · Mars 2020 Science Investigation Maps (vía USGS Astrogeology)",
+      "resolucion_original_m": 5,
+      "proyeccion": "reproyectado a la malla del relieve",
+      "archivo": "textura/",
+      "derivado": "remuestreo por promedio, JPEG calidad 88",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXortho_mosaic_5m.tif",
+        "bytes": 359599280,
+        "sha256": "cd9f4b2154fdd43e8c17abfbae63210b72507db2209d1d7db63f6f855b18d2df",
+        "descargado_utc": "2026-11-14T20:19:14Z"
+      }
+    },
+    {
+      "id": "relieve_trn_ctx",
+      "titulo": "Relieve CTX de navegación (TRN) — referencia",
+      "tipo": "raster",
+      "mision": "MRO · CTX",
+      "proveedor": "USGS Astrogeology · Mars 2020 Terrain Relative Navigation",
+      "resolucion_original_m": 20,
+      "nota": "Solo cubre la mitad oeste del cráter (77.16–77.70 E). Se guarda como referencia cruzada; no se publica.",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/JEZ_ctx_B_soc_008_DTM_MOLAtopography_DeltaGeoid_20m_Eqc_latTs0_lon0.tif",
+        "bytes": 9662387,
+        "sha256": "16a1aa66c3f48c1bca252795827db7b417876217aff0f5e1aff18027fab2327b",
+        "descargado_utc": "2026-11-14T20:11:24Z"
+      }
+    }
+  ],
+  "capas": [
+    {
+      "id": "rover_posicion_actual",
+      "titulo": "Posición actual de Perseverance",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/rover_posicion_actual.geojson",
+      "elementos": 1,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_waypoints_current.json",
+        "bytes": 939,
+        "sha256": "59b68e9c289c1dbc4fbe3fdc627a8d9a09f42e97a081ca585acc11f21431ea93",
+        "descargado_utc": "2026-11-14T20:11:42Z"
+      }
+    },
+    {
+      "id": "rover_paradas",
+      "titulo": "Paradas del rover (sol, elevación, distancia)",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/rover_paradas.geojson",
+      "elementos": 708,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_waypoints.json",
+        "bytes": 603126,
+        "sha256": "bd143ee69241229926abd373e6305b8bbb326d6b5a7b4a8d6935262696f93dc4",
+        "descargado_utc": "2026-11-14T20:11:43Z"
+      }
+    },
+    {
+      "id": "rover_traza",
+      "titulo": "Recorrido del rover",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/rover_traza.geojson",
+      "elementos": 559,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_traverse.json",
+        "bytes": 1723218,
+        "sha256": "6ddd0ece913d75b45d105946082f95ed84e68f4718b68d32a4421dc30877e7e6",
+        "descargado_utc": "2026-11-14T20:11:45Z"
+      }
+    },
+    {
+      "id": "muestras_roca",
+      "titulo": "Sitios de muestras (núcleos de roca, regolito, atmósfera)",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/muestras_roca.geojson",
+      "elementos": 22,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_SAMPLE_v3.json",
+        "bytes": 11389,
+        "sha256": "60d4b0a275ebcc6edd573fd768da085999a506a1661111e7f20f8d4b0aa1fcae",
+        "descargado_utc": "2026-11-14T20:11:45Z"
+      }
+    },
+    {
+      "id": "deposito_three_forks",
+      "titulo": "Depósito de muestras Three Forks",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/deposito_three_forks.geojson",
+      "elementos": 1,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_TF_Sample_Depot.json",
+        "bytes": 1453,
+        "sha256": "d53305bd8d704dc74bd28024611aa00cefb85ef08530e1154dca571352b3d53a",
+        "descargado_utc": "2026-11-14T20:11:46Z"
+      }
+    },
+    {
+      "id": "vistas_superficie",
+      "titulo": "Panorámicas de superficie",
+      "mision": "Mars 2020 · Perseverance",
+      "tipo": "vector",
+      "archivo": "capas/vistas_superficie.geojson",
+      "elementos": 7,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_surfaceexperience.json",
+        "bytes": 2816,
+        "sha256": "583b29fbf75e032a226c0362951bb3b293cab4760416f63fd5003e7319e15416",
+        "descargado_utc": "2026-11-14T20:11:46Z"
+      }
+    },
+    {
+      "id": "elipse_aterrizaje",
+      "titulo": "Elipse de aterrizaje Mars 2020",
+      "mision": "Mars 2020",
+      "tipo": "vector",
+      "archivo": "capas/elipse_aterrizaje.geojson",
+      "elementos": 1,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/JEZ_TRNEllipse_190507_line.json",
+        "bytes": 22955,
+        "sha256": "da400f37cbb43521dbc2fcf4aeb79d8280d91d9772f94efcb32df48632a2877d",
+        "descargado_utc": "2026-11-14T20:11:47Z"
+      }
+    },
+    {
+      "id": "heli_posicion_final",
+      "titulo": "Última posición de Ingenuity (misión terminada ene-2024)",
+      "mision": "Mars 2020 · Ingenuity",
+      "tipo": "vector",
+      "archivo": "capas/heli_posicion_final.geojson",
+      "elementos": 1,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_waypoints_current.json",
+        "bytes": 960,
+        "sha256": "3608fe586d2c4d8b0266beec38fc47c6922cffcabb73a51e91d15ca23dc66066",
+        "descargado_utc": "2026-11-14T20:11:48Z"
+      }
+    },
+    {
+      "id": "heli_aerodromos",
+      "titulo": "Aeródromos/puntos de Ingenuity",
+      "mision": "Mars 2020 · Ingenuity",
+      "tipo": "vector",
+      "archivo": "capas/heli_aerodromos.geojson",
+      "elementos": 73,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_waypoints.json",
+        "bytes": 65499,
+        "sha256": "457b536b6851259d2dfd1ee75c076ca95f4ad7f5f1cbd49c880564c3cf5d787b",
+        "descargado_utc": "2026-11-14T20:11:48Z"
+      }
+    },
+    {
+      "id": "heli_vuelos",
+      "titulo": "Trayectorias de los 72 vuelos de Ingenuity",
+      "mision": "Mars 2020 · Ingenuity",
+      "tipo": "vector",
+      "archivo": "capas/heli_vuelos.geojson",
+      "elementos": 72,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/m20_heli_flight_path.json",
+        "bytes": 2303889,
+        "sha256": "f0b19df6290a4d26c6618188d8986774b01c509e3d98841e410e8168f868240a",
+        "descargado_utc": "2026-11-14T20:11:52Z"
+      }
+    },
+    {
+      "id": "heli_zona_prueba",
+      "titulo": "Zona de pruebas de vuelo de Ingenuity",
+      "mision": "Mars 2020 · Ingenuity",
+      "tipo": "vector",
+      "archivo": "capas/heli_zona_prueba.geojson",
+      "elementos": 4,
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "proveedor": "NASA/JPL · MMGIS (mapa oficial de ubicación)",
+      "fuente": {
+        "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/json/M20_Heli_flightzone_dots.json",
+        "bytes": 3412,
+        "sha256": "204f185347d335bf4398b98af9a6bcb34c2f3a24ee93ae6ef47f5a147c6c26d6",
+        "descargado_utc": "2026-11-14T20:11:52Z"
+      }
+    },
+    {
+      "id": "nombres_iau",
+      "titulo": "Nombres oficiales IAU",
+      "mision": "IAU / USGS Gazetteer",
+      "tipo": "vector",
+      "archivo": "capas/nombres_iau.geojson",
+      "elementos": 12,
+      "proyeccion": "lon/lat Mars 2000",
+      "proveedor": "USGS Gazetteer of Planetary Nomenclature",
+      "fuente": {
+        "url": "https://asc-planetarynames-data.s3.us-west-2.amazonaws.com/MARS_nomenclature_center_pts.zip",
+        "bytes": 5421247,
+        "sha256": "753f29654d14e3f3e75f8bbe2b8fc36d4a6b43e16d9d74c122150a3797c31910",
+        "descargado_utc": "2026-11-14T20:11:55Z"
+      },
+      "nota": "Solo nombres aprobados por la IAU. Nombres informales de la misión (Séítah, Máaz…) vienen en otras capas o en SIM 3464."
+    },
+    {
+      "id": "geologia_unidades",
+      "titulo": "Unidades geológicas",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_unidades.geojson",
+      "elementos": 1304,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 15,
+      "valores": [
+        "0",
+        "1",
+        "10",
+        "11",
+        "12",
+        "13",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "geologia_contactos",
+      "titulo": "Contactos geológicos",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_contactos.geojson",
+      "elementos": 2496,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 15,
+      "valores": [
+        "approximate",
+        "boundary",
+        "certain"
+      ],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "geologia_rasgos_lineales",
+      "titulo": "Rasgos lineales (escarpes, crestas, canales)",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_rasgos_lineales.geojson",
+      "elementos": 382,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 15,
+      "valores": [
+        "channel (fluvial)",
+        "crest of buried crater",
+        "crest of crater rim",
+        "delta lobe front",
+        "lineament",
+        "ridge crest (type 1), certain"
+      ],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "geologia_rasgos_superficie",
+      "titulo": "Rasgos de superficie (dunas, etc.)",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_rasgos_superficie.geojson",
+      "elementos": 285,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 15,
+      "valores": [
+        "dark-colored mantling material",
+        "ridged"
+      ],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "geologia_puntos",
+      "titulo": "Rasgos puntuales",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_puntos.geojson",
+      "elementos": 341,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 0,
+      "valores": [
+        "small crater"
+      ],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "geologia_limite_mapa",
+      "titulo": "Límite del mapa geológico",
+      "mision": "USGS SIM 3464 (Sun & Stack 2020)",
+      "tipo": "vector",
+      "archivo": "capas/geologia_limite_mapa.geojson",
+      "elementos": 1,
+      "proyeccion": "lon/lat Mars 2000 (reproyectado desde MTM 77.5E)",
+      "proveedor": "USGS · Geologic map of Jezero crater and the Nili Planum region, Mars (SIM 3464, 1:75 000)",
+      "doi": "https://doi.org/10.3133/sim3464",
+      "simplificado_m": 0,
+      "valores": [],
+      "fuente": {
+        "url": "https://pubs.usgs.gov/sim/3464/sim3464_database.zip",
+        "bytes": 349336873,
+        "sha256": "a88bd53a5573743cc4a20036c10e585106d08a433ad2f34af269e9cea1529f87",
+        "descargado_utc": "2026-11-14T20:12:35Z"
+      }
+    },
+    {
+      "id": "clima_meda_feed",
+      "titulo": "Clima diario en Jezero (feed resumido MEDA)",
+      "mision": "Mars 2020 · MEDA",
+      "tipo": "tabla",
+      "archivo": "capas/clima_meda_feed.json",
+      "elementos": 7,
+      "fuente": {
+        "url": "https://mars.nasa.gov/rss/api/?feed=weather&category=mars2020&feedtype=json",
+        "bytes": 1368,
+        "sha256": "9ff9db7675b5165e6d0547f9b86b75cea2cd1badfd27ea5aec4fe6956a47ac35",
+        "descargado_utc": "2026-11-14T20:11:53Z"
+      },
+      "aviso": "Feed detenido: último dato 2024-04-27. No incluye viento ni radiación. Datos completos (viento, humedad, polvo, UV) en PDS Atmospheres → Fase 4."
+    },
+    {
+      "id": "pendiente_clases",
+      "titulo": "Pendientes y zonas de riesgo",
+      "mision": "KAIROS 2033 · Fase 3 (derivado)",
+      "tipo": "raster derivado",
+      "archivo": "riesgos/pendiente_clases_2228x2534.png",
+      "resolucion_original_m": 20,
+      "proveedor": "Calculado aquí desde el relieve NASA/JPL CTX DEM 20 m",
+      "proyeccion": "Jezero_Crater_Projection",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXDEM_20m.tif",
+        "sha256": "ba7f706ea1b5d63a562f28a7dcf7a7f3c79bce7f048e6974b57e8a33c30d1ba2",
+        "derivado_utc": "2026-11-15T02:51:14Z"
+      }
+    },
+    {
+      "id": "ruta_segura",
+      "titulo": "Ruta más segura de KAIROS",
+      "mision": "KAIROS 2033 · Fase 3 (derivado)",
+      "tipo": "vector derivado",
+      "archivo": "riesgos/ruta_segura.geojson",
+      "elementos": 5,
+      "proveedor": "Calculado aquí desde el relieve NASA/JPL CTX DEM 20 m",
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/CTX/ScienceInvestigationMaps_JPL/M20_JezeroCrater_CTXDEM_20m.tif",
+        "sha256": "ba7f706ea1b5d63a562f28a7dcf7a7f3c79bce7f048e6974b57e8a33c30d1ba2",
+        "derivado_utc": "2026-11-15T02:51:14Z"
+      }
+    },
+    {
+      "id": "ruta_segura_hirise",
+      "titulo": "Ruta más segura (HiRISE 1 m)",
+      "mision": "KAIROS 2033 · Fase 3 (derivado)",
+      "tipo": "vector derivado",
+      "archivo": "riesgos/ruta_segura_hirise.geojson",
+      "elementos": 5,
+      "resolucion_original_m": 1,
+      "proveedor": "Calculado aquí desde el DTM HiRISE 1 m (USGS · Mars 2020 TRN)",
+      "proyeccion": "lon/lat Mars 2000 (este positivo)",
+      "fuente": {
+        "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/HiRISE/JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40.tif",
+        "sha256": "d6a20fc26625363c2dac7a7eecc018f68097c52c4f159d3c8046de1a017f6883",
+        "nota": "SHA-256 del recorte guardado en datos/crudos"
+      }
+    }
+  ],
+  "servicios_teselas": [
+    {
+      "id": "trek_mola",
+      "titulo": "Relieve global MOLA sombreado (contexto)",
+      "mision": "MGS · MOLA",
+      "resolucion_m": 463,
+      "tipo": "teselas WMTS",
+      "url": "https://trek.nasa.gov/tiles/Mars/EQ/Mars_MGS_MOLA_ClrShade_merge_global_463m/1.0.0/default/default028mm/{z}/{y}/{x}.jpg",
+      "proveedor": "NASA Mars Trek",
+      "cors": "verificado: Access-Control-Allow-Origin *",
+      "nivel_max": 7,
+      "m_por_pixel_nivel_max": 326
+    },
+    {
+      "id": "trek_hirise_jezero",
+      "titulo": "HiRISE Jezero 25 cm",
+      "mision": "MRO · HiRISE",
+      "resolucion_m": 0.25,
+      "tipo": "teselas WMTS",
+      "capacidades": "https://trek.nasa.gov/tiles/Mars/EQ/JEZ_hirise_soc_006_orthoMosaic_25cm_Eqc_latTs0_lon0_first_dd/1.0.0/WMTSCapabilities.xml",
+      "proveedor": "NASA Mars Trek",
+      "cors": "verificado: Access-Control-Allow-Origin *"
+    },
+    {
+      "id": "jpl_color_basemap",
+      "titulo": "Mapa base a color HiRISE+CTX 25 cm (mapa oficial del rover)",
+      "mision": "MRO · HiRISE/CTX",
+      "resolucion_m": 0.25,
+      "tipo": "teselas TMS (EPSG:3857)",
+      "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/M20_HiRISE_RGB_CTX_mosaic_25cm_v7_Merge_LERC_clip/{z}/{x}/{y}.png",
+      "proveedor": "NASA/JPL MMGIS",
+      "cors": "no permitido desde el navegador (sin Access-Control-Allow-Origin)"
+    },
+    {
+      "id": "jpl_nombres",
+      "titulo": "Etiquetas de lugares (oficiales e informales de la misión)",
+      "mision": "Mars 2020",
+      "tipo": "teselas TMS",
+      "url": "https://mars.nasa.gov/mmgis-maps/M20/Layers/M20_Placenames_175k_800dpi/{z}/{x}/{y}.png",
+      "proveedor": "NASA/JPL MMGIS",
+      "cors": "no permitido desde el navegador (sin Access-Control-Allow-Origin)"
+    }
+  ],
+  "pendientes": [
+    {
+      "tema": "Clima completo (viento, humedad, polvo, UV)",
+      "fuente": "PDS Atmospheres · Mars 2020 MEDA",
+      "url": "https://pds-atmospheres.nmsu.edu/data_and_services/atmospheres_data/PERSEVERANCE/meda.html",
+      "fase": 4
+    },
+    {
+      "tema": "Radiación ionizante en superficie",
+      "fuente": "PDS PPI · MSL RAD (Curiosity)",
+      "url": "https://pds-ppi.igpp.ucla.edu/",
+      "fase": 4,
+      "aviso": "Perseverance no mide radiación ionizante. RAD mide en el cráter Gale: debe etiquetarse 'medido en Gale por Curiosity'."
+    },
+    {
+      "tema": "Hora solar marciana",
+      "fuente": "NASA GISS Mars24",
+      "url": "https://www.giss.nasa.gov/tools/mars24/help/algorithm.html",
+      "fase": 4
+    },
+    {
+      "tema": "Pendientes y zonas de riesgo",
+      "fuente": "derivado del relieve JPL CTX 20 m",
+      "fase": 3
+    }
+  ],
+  "validacion": "validacion.json"
+}

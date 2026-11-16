@@ -1,0 +1,71 @@
+{
+  "descripcion": "Elevación real del cráter Jezero (m, respecto al areoide de Marte). Uint16 little-endian, fila 0 = norte.",
+  "decodificar": "altura_m = hmin + (v - 1) / 65534 * (hmax - hmin); v = 0 → sin dato",
+  "hmin_m": -3504.645263671875,
+  "hmax_m": -475.8408203125,
+  "precision_m": 0.046217298552802745,
+  "crs_wkt": "PROJCS[\"Jezero_Crater_Projection\",GEOGCS[\"GCS_Mars_2000_Sphere\",DATUM[\"Mars_2000_(Sphere)\",SPHEROID[\"Mars_2000_Sphere\",3396190,0]],PRIMEM[\"Reference_Meridian\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Equirectangular\"],PARAMETER[\"standard_parallel_1\",18.4663],PARAMETER[\"central_meridian\",0],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+  "radio_marte_m": 3396190.0,
+  "paralelo_estandar_deg": 18.4663,
+  "lonlat_a_metros": "x = R·rad(lon)·cos(18.4663°) ; y = R·rad(lat)   (mismo sistema que easting/northing del rover en MMGIS)",
+  "limites_m": {
+    "oeste": 4328999.999999998,
+    "sur": 1042080.0000000028,
+    "este": 4418119.999999998,
+    "norte": 1143420.0000000028
+  },
+  "limites_lonlat": {
+    "oeste": 76.99743706146,
+    "sur": 17.58051991054475,
+    "este": 78.58256332408818,
+    "norte": 19.29018700686615
+  },
+  "tamano_km": [
+    89.12,
+    101.34
+  ],
+  "versiones": [
+    {
+      "archivo": "relieve/jezero_relieve_901x1024.u16",
+      "ancho": 901,
+      "alto": 1024,
+      "m_por_pixel_x": 98.91231964483907,
+      "m_por_pixel_y": 98.96484375,
+      "transform_afin": [
+        98.91231964483907,
+        0.0,
+        4328999.999999998,
+        0.0,
+        -98.96484375,
+        1143420.0000000028
+      ]
+    },
+    {
+      "archivo": "relieve/jezero_relieve_1801x2048.u16",
+      "ancho": 1801,
+      "alto": 2048,
+      "m_por_pixel_x": 49.48362021099389,
+      "m_por_pixel_y": 49.482421875,
+      "transform_afin": [
+        49.48362021099389,
+        0.0,
+        4328999.999999998,
+        0.0,
+        -49.482421875,
+        1143420.0000000028
+      ]
+    }
+  ],
+  "texturas": [
+    {
+      "archivo": "textura/jezero_ctx_1801x2048.jpg",
+      "ancho": 1801,
+      "alto": 2048
+    },
+    {
+      "archivo": "textura/jezero_ctx_3602x4096.jpg",
+      "ancho": 3602,
+      "alto": 4096
+    }
+  ]
+}

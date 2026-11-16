@@ -1,0 +1,14 @@
+# Dependencias y compilados
+node_modules/
+dist/
+
+# Datos crudos (~1 GB): se descargan con scripts/fase0_descargar.sh
+datos/crudos/
+
+# Secretos y configuración local
+.env*
+.vercel/
+
+# Sistema
+.DS_Store
+__pycache__/

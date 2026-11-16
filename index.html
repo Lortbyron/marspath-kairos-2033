@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KAIROS 2033 · Jezero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <canvas id="gl" aria-label="Relieve real del cráter Jezero: arrastra para girar, rueda para acercar, pasa el cursor para leer la altitud" data-en-aria="Real elevation of Jezero crater: drag to rotate, scroll to zoom, hover to read the elevation"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+  <div id="tip" role="status" aria-live="polite"></div>
+  <div id="carga" role="status" data-en="Loading NASA data…">Cargando datos de la NASA…</div>
+
+  <header id="title" class="card">
+    <p class="k" data-en="KAIROS 2033 Mission · Jezero">Misión KAIROS 2033 · Jezero</p>
+    <h1 data-en="Jezero crater in real relief">El cráter Jezero en relieve real</h1>
+    <p class="sub" data-en="NASA/JPL elevation (CTX camera, 20 m per pixel) and CTX orbital photo. Hover to read the real elevation, slope and coordinates.">Elevación de la NASA/JPL (cámara CTX, 20 m por píxel) y foto orbital CTX. Pasa el cursor para leer la altitud real, la pendiente y las coordenadas.</p>
+    <p class="val" id="val"></p>
+    <button id="b-sim" class="cta" type="button">▶ Iniciar simulador KAIROS 2033</button>
+    <p class="aviso" data-en="&lt;b&gt;Educational and demonstration tool&lt;/b&gt; built only with official scientific data from NASA, USGS and the IAU, validated and with verifiable sources. It serves as a reference and study guide to prepare a crewed mission to Mars. It does not replace NASA operational planning."><b>Herramienta educativa y de demostración</b> construida solo con datos científicos oficiales de la NASA, el USGS y la IAU, validados y con fuente verificable. Sirve como referencia y guía de estudio para preparar una misión tripulada a Marte. No reemplaza la planificación operativa de la NASA.</p>
+  </header>
+
+  <aside id="panel" class="card" aria-label="Controles del mapa" data-en-aria="Map controls">
+    <label class="row"><span><span data-en="Vertical exaggeration">Exageración vertical</span> <b id="v-exag">3.0×</b></span><input autocomplete="off" id="exag" type="range" min="1" max="6" step="0.1" value="3" /></label>
+    <fieldset class="row"><legend data-en="Base image · compare resolutions">Imagen base · compara resoluciones</legend>
+      <div class="cap"><label><input autocomplete="off" type="radio" name="base" id="b-ctx" value="ctx" checked /> CTX · 5 m <small>MRO</small></label><button class="info" type="button" data-info="textura_jpl_ctx" aria-label="Ficha de CTX" data-en-aria="CTX data sheet">i</button></div>
+      <div class="cap"><label><input autocomplete="off" type="radio" name="base" id="b-mola" value="mola" /> MOLA · 463 m <small>MGS</small></label><button class="info" type="button" data-info="trek_mola" aria-label="Ficha de MOLA" data-en-aria="MOLA data sheet">i</button></div>
+      <div class="cap"><label><input autocomplete="off" type="radio" name="base" id="b-none" value="none" /> <span data-en="No photo">Sin foto</span></label></div>
+    </fieldset>
+    <fieldset class="row"><legend data-en="Elevation">Relieve</legend>
+      <div class="cap"><label><input autocomplete="off" id="l-alt" type="checkbox" checked /> <span data-en="Color by elevation">Color por altitud</span></label><button class="info" type="button" data-info="relieve_jpl_ctx" aria-label="Ficha del relieve" data-en-aria="Elevation data sheet">i</button></div>
+      <div class="cap"><label><input autocomplete="off" id="l-contour" type="checkbox" checked /> <span data-en="Contour lines (50 m)">Curvas de nivel (50 m)</span></label></div>
+      <div class="cap"><label><input autocomplete="off" id="l-shadow" type="checkbox" checked /> <span data-en="Shadows">Sombras</span></label></div>
+    </fieldset>
+    <fieldset class="row" id="riesgos"><legend data-en="Risks · slopes">Riesgos · pendientes</legend></fieldset>
+    <fieldset class="row" id="capas"><legend data-en="Mission layers">Capas de misiones</legend></fieldset>
+    <div class="btns">
+      <button id="b-rise" type="button" data-en="Flatten">Aplanar</button>
+      <button id="b-tour" type="button" data-en="Fly over the crater">Vuelo sobre el cráter</button>
+    </div>
+    <div class="perf"><span id="fps">— fps</span><button id="b-q" type="button">Calidad: auto</button></div>
+  </aside>
+
+  <aside id="inspector" class="card" aria-live="polite" hidden>
+    <button id="insp-x" class="x" type="button" aria-label="Cerrar ficha" data-en-aria="Close data sheet">×</button>
+    <div id="insp"></div>
+  </aside>
+
+  <section id="time" class="card" aria-label="Hora solar en Jezero" data-en-aria="Solar time at Jezero">
+    <button id="b-play" type="button" aria-label="Animar el sol" data-en-aria="Animate the sun">▶</button>
+    <div class="trk"><span>06:00</span><input autocomplete="off" id="tod" type="range" min="0" max="1" step="0.001" value="0.3" aria-label="Hora solar local" data-en-aria="Local solar time" /><span>18:00</span></div>
+    <div class="clk"><output id="clock">09:36</output><small id="sunel">Sol 1 · Ls 274.5°</small></div>
+  </section>
+
+  <section id="sim" class="card" aria-label="Simulador de la misión" data-en-aria="Mission simulator" hidden>
+    <div class="fila">
+      <button id="sim-play" type="button" aria-label="Reproducir">▶</button>
+      <output id="sim-dia" data-en="Day 1">Día 1</output>
+      <div class="vel" role="group" aria-label="Velocidad" data-en-aria="Speed"><button type="button" data-v="1" aria-pressed="false" data-en="1 day/s">1 día/s</button><button type="button" data-v="5" aria-pressed="true" data-en="5 days/s">5 días/s</button><button type="button" data-v="20" aria-pressed="false" data-en="20 days/s">20 días/s</button></div>
+      <label class="seg"><input autocomplete="off" id="sim-seguir" type="checkbox" checked /> <span data-en="Follow">Seguir</span></label>
+      <button id="sim-x" type="button" class="x" aria-label="Salir del simulador" data-en-aria="Exit the simulator">Salir</button>
+    </div>
+    <div class="pista"><input autocomplete="off" id="sim-t" type="range" min="0" step="0.01" value="0" aria-label="Día de la misión" data-en-aria="Mission day" /><div id="sim-marcas"></div></div>
+  </section>
+  <aside id="hud" class="card" hidden><div id="hud-c" aria-live="polite"></div></aside>
+  <aside id="cerca" hidden aria-label="Vista de cerca: ilustración con los modelos 3D de la misión" data-en-aria="Close-up view: illustration with the mission 3D models">
+    <div class="cab">
+      <p class="k">Vista de cerca</p>
+      <div class="vistas" role="group" aria-label="Qué equipo ver" data-en-aria="Which team to show" hidden><button type="button" data-vista="campo" aria-pressed="true" data-en="Field">Campo</button><button type="button" data-vista="base" aria-pressed="false" data-en="Base">Base</button></div>
+      <button type="button" class="min" aria-expanded="true" aria-label="Ocultar la vista de cerca"></button>
+    </div>
+    <div class="hueco"><canvas aria-label="Modelos 3D: base Kairos D-02, astronautas KAIROS 01 y robot Galilei" data-en-aria="3D models: Kairos D-02 base, KAIROS 01 astronauts and Galilei robot"></canvas><div class="viaje"></div><p class="titulo"></p></div>
+    <p class="pie" data-en="Illustration, not at map scale: the ground is flat and the grid is 2 m. &lt;span class=&quot;est diseno&quot;&gt;Mateo’s design&lt;/span&gt; &lt;span class=&quot;est hipotetico&quot;&gt;hypothetical&lt;/span&gt;">Ilustración, no a escala del mapa: el suelo es liso y la cuadrícula mide 2 m. <span class="est diseno">diseño de Mateo</span> <span class="est hipotetico">hipotético</span></p>
+  </aside>
+  <aside id="legend" class="card"><p data-en="Real elevation (m)">Altitud real (m)</p><div class="ramp"></div><div class="ticks" id="ticks"></div><p class="fuente" data-en="Source: NASA/JPL · USGS · IAU">Fuente: NASA/JPL · USGS · IAU</p></aside>
+  <div id="top-c"><button id="b-solo" type="button" aria-pressed="false">Solo el mapa</button><div id="idioma"></div></div>
+  <p id="aviso-mini" hidden data-en="&lt;b&gt;Educational and demonstration tool&lt;/b&gt; with official NASA, USGS and IAU data · it does not replace NASA operational planning"><b>Herramienta educativa y de demostración</b> con datos oficiales de la NASA, el USGS y la IAU · no reemplaza la planificación operativa de la NASA</p>
+  <script type="module" src="/src/relieve.js"></script>
+</body>
+</html>

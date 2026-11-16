@@ -1,0 +1,193 @@
+{
+ "nombre": "KAIROS 2033",
+ "nombre_completo": "Misión KAIROS 2033 · Jezero",
+ "significado_nombre": "Kairós: en la mitología griega, el dios del momento exacto y la ventana irrepetible (frente a Cronos, el tiempo común). La misión atrapa la ventana de 2033 y despega en Ls 170° con 19 soles de margen antes de la temporada de polvo.",
+ "director": "Mateo",
+ "tripulacion": 6,
+ "ruta": [
+  {
+   "id": "aterrizaje",
+   "nombre": "Octavia E. Butler",
+   "descripcion": "Sitio de aterrizaje de Perseverance (18-feb-2021)",
+   "lon": 77.450886,
+   "lat": 18.444627,
+   "fuente": "rover_paradas: primera posición (sol 13)"
+  },
+  {
+   "id": "three_forks",
+   "nombre": "Depósito Three Forks",
+   "descripcion": "10 tubos de muestras dejados por Perseverance",
+   "lon": 77.408226,
+   "lat": 18.45296,
+   "fuente": "deposito_three_forks: centro del polígono"
+  },
+  {
+   "id": "delta_frente",
+   "nombre": "Frente del delta",
+   "descripcion": "Rocas sedimentarias formadas en el lago",
+   "lon": 77.405889,
+   "lat": 18.458637,
+   "fuente": "muestras_roca: Hazeltop + Bearwallow"
+  },
+  {
+   "id": "delta_superior",
+   "nombre": "Delta superior",
+   "descripcion": "Sedimentos del abanico del río",
+   "lon": 77.368153,
+   "lat": 18.48298,
+   "fuente": "muestras_roca: Otis Peak"
+  },
+  {
+   "id": "carbonatos",
+   "nombre": "Antigua orilla · carbonatos",
+   "descripcion": "Carbonato cementado con sílice",
+   "lon": 77.327219,
+   "lat": 18.491867,
+   "fuente": "muestras_roca: Comet Geyser"
+  },
+  {
+   "id": "cheyava",
+   "nombre": "Neretva · Cheyava Falls",
+   "descripcion": "Posible biofirma (muestra Sapphire Canyon)",
+   "lon": 77.305149,
+   "lat": 18.497474,
+   "fuente": "muestras_roca: Sapphire_Canyon"
+  }
+ ],
+ "tripulacion_fuente": "NASA Mars Design Reference Architecture 5.0 (NASA-SP-2009-566)",
+ "hipotetico": "Solo es hipotético que viaje una tripulación. Lugares, fechas orbitales, estaciones, alturas y radiación son datos reales.",
+ "objetivo_principal": "Recuperar los 10 tubos de muestras que Perseverance dejó en el depósito Three Forks (dic-2022 / ene-2023).",
+ "trayectoria": {
+  "traj_id": 22313,
+  "lanzamiento": "2033-05-03",
+  "aterrizaje": "2033-11-09",
+  "despegue_marte": "2035-04-07",
+  "regreso_tierra": "2035-09-30",
+  "ida_dias": 190,
+  "estadia_dias": 513,
+  "estadia_soles": 499,
+  "vuelta_dias": 176,
+  "total_dias": 880,
+  "delta_v_km_s": 6.15,
+  "Ls_aterrizaje": 274.8,
+  "Ls_despegue": 169.6,
+  "aterriza_en_polvo": true,
+  "despega_en_polvo": false,
+  "dias_en_temporada_polvo": 151,
+  "fuente": "NASA Ames Trajectory Browser",
+  "consulta": "https://trajbrowser.arc.nasa.gov/traj_browser.php?NEAs=on&NECs=on&chk_maxMag=on&maxMag=25&chk_maxOCC=on&maxOCC=4&chk_target_list=on&target_list=Mars&mission_class=roundtrip&mission_type=rendezvous&LD1=2030&LD2=2040&maxDT=1000&DTunit=days&maxDV=10&min=DV&wdw_width=-1&submit=Search"
+ },
+ "duracion": {
+  "ida_soles": 185,
+  "superficie_soles": 500,
+  "vuelta_soles": 171,
+  "total_dias": 880,
+  "total_soles": 856
+ },
+ "polvo": {
+  "fin_temporada": "2034-04-10",
+  "sol_fin_temporada": 148,
+  "inicio_siguiente": "2035-04-27",
+  "sol_inicio_siguiente": 520,
+  "sol_despegue": 501,
+  "margen_soles": 19,
+  "criterio": "Despegar de Marte antes de que empiece la temporada de polvo (Ls 180°)."
+ },
+ "fases_superficie": [
+  {
+   "id": "aterrizaje",
+   "nombre": "Aterrizaje en Octavia E. Butler",
+   "sol_inicio": 1,
+   "sol_fin": 7,
+   "soles": 7,
+   "fecha_inicio": "2033-11-09",
+   "fecha_fin": "2033-11-15",
+   "Ls_inicio": 274.5,
+   "Ls_fin": 278.3,
+   "en_temporada_polvo": true
+  },
+  {
+   "id": "habitat",
+   "nombre": "Instalación del hábitat",
+   "sol_inicio": 8,
+   "sol_fin": 60,
+   "soles": 53,
+   "fecha_inicio": "2033-11-16",
+   "fecha_fin": "2034-01-08",
+   "Ls_inicio": 279.0,
+   "Ls_fin": 311.2,
+   "en_temporada_polvo": true
+  },
+  {
+   "id": "three_forks",
+   "nombre": "Misión principal: recuperar los tubos de Three Forks",
+   "sol_inicio": 61,
+   "sol_fin": 150,
+   "soles": 90,
+   "fecha_inicio": "2034-01-09",
+   "fecha_fin": "2034-04-11",
+   "Ls_inicio": 311.8,
+   "Ls_fin": 1.0,
+   "en_temporada_polvo": true
+  },
+  {
+   "id": "delta",
+   "nombre": "Estudios del delta (frente y parte alta)",
+   "sol_inicio": 151,
+   "sol_fin": 270,
+   "soles": 120,
+   "fecha_inicio": "2034-04-12",
+   "fecha_fin": "2034-08-12",
+   "Ls_inicio": 1.5,
+   "Ls_fin": 58.0,
+   "en_temporada_polvo": false
+  },
+  {
+   "id": "carbonatos",
+   "nombre": "Carbonatos de la antigua orilla (margen)",
+   "sol_inicio": 271,
+   "sol_fin": 350,
+   "soles": 80,
+   "fecha_inicio": "2034-08-13",
+   "fecha_fin": "2034-11-02",
+   "Ls_inicio": 58.4,
+   "Ls_fin": 94.0,
+   "en_temporada_polvo": false
+  },
+  {
+   "id": "cheyava",
+   "nombre": "Neretva Vallis y la roca Cheyava Falls",
+   "sol_inicio": 351,
+   "sol_fin": 420,
+   "soles": 70,
+   "fecha_inicio": "2034-11-03",
+   "fecha_fin": "2035-01-13",
+   "Ls_inicio": 94.4,
+   "Ls_fin": 126.9,
+   "en_temporada_polvo": false
+  },
+  {
+   "id": "regreso",
+   "nombre": "Preparación del regreso",
+   "sol_inicio": 421,
+   "sol_fin": 500,
+   "soles": 80,
+   "fecha_inicio": "2035-01-14",
+   "fecha_fin": "2035-04-05",
+   "Ls_inicio": 127.4,
+   "Ls_fin": 168.7,
+   "en_temporada_polvo": false
+  }
+ ],
+ "fases_nota": "Reparto de soles diseñado por Mateo (hipotético); fechas y estaciones calculadas.",
+ "radiacion": {
+  "ida": 342,
+  "superficie": 344,
+  "vuelta": 317,
+  "total": 1003,
+  "unidad": "mSv",
+  "limite_carrera_nasa": 600,
+  "veces_limite": 1.67,
+  "fuente": "MSL RAD (Curiosity, cráter Gale): crucero 1.8 mSv/día (NASA/JPL 2013; Zeitlin 2013), superficie 0.67 mSv/día (NASA 13-366; Hassler 2014). Blindaje: el de la nave MSL; sin blindaje extra."
+ }
+}

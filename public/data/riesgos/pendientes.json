@@ -1,0 +1,427 @@
+{
+ "generado_utc": "2026-11-15T02:51:14Z",
+ "fuente_relieve": {
+  "archivo": "jpl_ctx_dem_20m.tif",
+  "sha256": "ba7f706ea1b5d63a562f28a7dcf7a7f3c79bce7f048e6974b57e8a33c30d1ba2",
+  "resolucion_m": 20.0
+ },
+ "metodo": {
+  "pendiente": "derivado: arctan(|gradiente|) del relieve JPL CTX DEM 20 m (diferencias centrales).",
+  "ruta": "Camino más corto (8 direcciones) que nunca pisa una celda de 20 m con más de 10°; si no existe, 15°; nunca más de 20°. No hay pesos inventados: solo distancia + prohibición por pendiente.",
+  "rasters_web": "Remuestreo por máximo: un píxel de la web se marca con la celda de 20 m más empinada que contiene.",
+  "limitacion": "Con celdas de 20 m no se ven rocas, escalones ni pendientes de pocos metros; en el terreno real las pendientes locales son mayores. Para planear de verdad se usarían modelos HiRISE de 1 m."
+ },
+ "limites_nasa": [
+  {
+   "id": "caminar_traje",
+   "grados": 20,
+   "quien": "Astronauta caminando con traje",
+   "cita": "Walking up/down/across a slope of up to 20° [Note: Apollo 15 traversed on slopes of ~17°]",
+   "documento": "NASA EVA-EXP-0042 Rev. B, Exploration EVA System Concept of Operations (19-oct-2020), p. 38",
+   "url": "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf"
+  },
+  {
+   "id": "rover_presurizado",
+   "grados": 20,
+   "quien": "Rover presurizado (cabina con aire)",
+   "cita": "able to handle local slopes of up to 20° and rock sizes of up to 30 cm",
+   "documento": "NASA EVA-EXP-0042 Rev. B, sección del rover presurizado (cita ISECG 2018), p. 65",
+   "url": "https://www.nasa.gov/wp-content/uploads/2017/02/eva-exp-0042_xeva_system_con_ops_rev_b_final_dtd_10192020_ref_doc.pdf"
+  },
+  {
+   "id": "rover_abierto_apollo",
+   "grados": 25,
+   "quien": "Rover abierto tipo Apollo (LRV), cargado al máximo",
+   "cita": "Climbing a 25-deg slope fully loaded",
+   "documento": "NASA TM X-64623, Mobility Systems Activity for Lunar Rovers at MSFC (9-sep-1971): especificación del LRV",
+   "url": "https://ntrs.nasa.gov/citations/19720004516",
+   "nota": "En Apollo 15 la pendiente más fuerte que encontró el LRV fue de 10–15° (mismo documento)."
+  },
+  {
+   "id": "perseverance",
+   "grados": 30,
+   "quien": "Perseverance (robot, sin personas)",
+   "cita": "Perseverance is designed to withstand a 45-degree tilt in any direction without tipping over. For added protection, rover drivers avoid terrains that would tilt the rover more than 30 degrees.",
+   "documento": "NASA Science · Mars 2020 rover components",
+   "url": "https://science.nasa.gov/mission/mars-2020-perseverance/rover-components/"
+  }
+ ],
+ "experiencia_apollo": {
+  "cita": "Las tripulaciones de Apollo 15–17 trabajaron en laderas de 15–20°; subir a pie una ladera de ≈15° con suelo suelto fue 'como subir una duna de arena' (Scott, Apollo 15). El plan incluía 1 min de descanso por cada 5 min de subida.",
+  "documento": "Eppler et al., LPSC 2025, resumen 2023: Lunar highland terrain walking EVA operations",
+  "url": "https://www.hou.usra.edu/meetings/lpsc2025/pdf/2023.pdf"
+ },
+ "aviso_luna_marte": "Los límites de traje y rover vienen de documentos del programa Artemis (Luna, gravedad 0.17 g). La NASA aún no publica un límite de pendiente para caminar en Marte (0.38 g): se usan como referencia y queda como dato pendiente.",
+ "clases": [
+  {
+   "desde": 0,
+   "nombre": "0–15° · transitable",
+   "color": null
+  },
+  {
+   "desde": 15,
+   "nombre": "15–20° · difícil: cerca del límite NASA",
+   "color": "#ffd640"
+  },
+  {
+   "desde": 20,
+   "nombre": "20–25° · fuera del límite para caminar y para el rover presurizado",
+   "color": "#ff8020"
+  },
+  {
+   "desde": 25,
+   "nombre": "más de 25° · fuera del límite de cualquier vehículo con personas",
+   "color": "#dc1e28"
+  }
+ ],
+ "areas": {
+  "todo_el_mapa": [
+   {
+    "clase": "0–15° · transitable",
+    "km2": 8283.84,
+    "porcentaje": 91.78
+   },
+   {
+    "clase": "15–20° · difícil: cerca del límite NASA",
+    "km2": 379.99,
+    "porcentaje": 4.21
+   },
+   {
+    "clase": "20–25° · fuera del límite para caminar y para el rover presurizado",
+    "km2": 167.11,
+    "porcentaje": 1.85
+   },
+   {
+    "clase": "más de 25° · fuera del límite de cualquier vehículo con personas",
+    "km2": 189.29,
+    "porcentaje": 2.1
+   }
+  ],
+  "dentro_del_crater": [
+   {
+    "clase": "0–15° · transitable",
+    "km2": 1676.19,
+    "porcentaje": 94.51
+   },
+   {
+    "clase": "15–20° · difícil: cerca del límite NASA",
+    "km2": 53.32,
+    "porcentaje": 3.01
+   },
+   {
+    "clase": "20–25° · fuera del límite para caminar y para el rover presurizado",
+    "km2": 27.08,
+    "porcentaje": 1.53
+   },
+   {
+    "clase": "más de 25° · fuera del límite de cualquier vehículo con personas",
+    "km2": 17.05,
+    "porcentaje": 0.96
+   }
+  ]
+ },
+ "tramos": [
+  {
+   "desde": "Octavia E. Butler",
+   "hasta": "Depósito Three Forks",
+   "umbral_usado": 10,
+   "largo_m": 2607,
+   "sube_m": 46,
+   "baja_m": 25,
+   "pendiente_max": 7.5,
+   "pendiente_media": 2.8,
+   "pct_0_10": 100.0,
+   "pct_10_15": 0.0,
+   "pct_15_20": 0.0,
+   "pct_mas_20": 0.0,
+   "alt_inicio_m": -2567,
+   "alt_fin_m": -2547,
+   "a_pie_2km": false,
+   "horas_a_2kmh": 1.3,
+   "linea_recta": {
+    "largo_m": 2607,
+    "pendiente_max": 7.0,
+    "pct_mas_20": 0.0,
+    "pct_15_20": 0.0
+   },
+   "arena_m": 0
+  },
+  {
+   "desde": "Depósito Three Forks",
+   "hasta": "Frente del delta",
+   "umbral_usado": 15,
+   "largo_m": 390,
+   "sube_m": 26,
+   "baja_m": 0,
+   "pendiente_max": 12.6,
+   "pendiente_media": 4.5,
+   "pct_0_10": 78.2,
+   "pct_10_15": 21.8,
+   "pct_15_20": 0.0,
+   "pct_mas_20": 0.0,
+   "alt_inicio_m": -2547,
+   "alt_fin_m": -2520,
+   "a_pie_2km": true,
+   "horas_a_2kmh": 0.2,
+   "linea_recta": {
+    "largo_m": 390,
+    "pendiente_max": 12.6,
+    "pct_mas_20": 0.0,
+    "pct_15_20": 0.0
+   },
+   "arena_m": 0
+  },
+  {
+   "desde": "Frente del delta",
+   "hasta": "Delta superior",
+   "umbral_usado": 15,
+   "largo_m": 2728,
+   "sube_m": 147,
+   "baja_m": 51,
+   "pendiente_max": 14.9,
+   "pendiente_media": 6.9,
+   "pct_0_10": 81.0,
+   "pct_10_15": 19.0,
+   "pct_15_20": 0.0,
+   "pct_mas_20": 0.0,
+   "alt_inicio_m": -2520,
+   "alt_fin_m": -2425,
+   "a_pie_2km": false,
+   "horas_a_2kmh": 1.36,
+   "linea_recta": {
+    "largo_m": 2716,
+    "pendiente_max": 25.5,
+    "pct_mas_20": 9.2,
+    "pct_15_20": 7.0
+   },
+   "arena_m": 219
+  },
+  {
+   "desde": "Delta superior",
+   "hasta": "Antigua orilla · carbonatos",
+   "umbral_usado": 10,
+   "largo_m": 2515,
+   "sube_m": 68,
+   "baja_m": 27,
+   "pendiente_max": 8.3,
+   "pendiente_media": 3.3,
+   "pct_0_10": 100.0,
+   "pct_10_15": 0.0,
+   "pct_15_20": 0.0,
+   "pct_mas_20": 0.0,
+   "alt_inicio_m": -2425,
+   "alt_fin_m": -2383,
+   "a_pie_2km": false,
+   "horas_a_2kmh": 1.26,
+   "linea_recta": {
+    "largo_m": 2515,
+    "pendiente_max": 5.9,
+    "pct_mas_20": 0.0,
+    "pct_15_20": 0.0
+   },
+   "arena_m": 0
+  },
+  {
+   "desde": "Antigua orilla · carbonatos",
+   "hasta": "Neretva · Cheyava Falls",
+   "umbral_usado": 15,
+   "largo_m": 1381,
+   "sube_m": 45,
+   "baja_m": 15,
+   "pendiente_max": 14.8,
+   "pendiente_media": 7.1,
+   "pct_0_10": 77.9,
+   "pct_10_15": 22.1,
+   "pct_15_20": 0.0,
+   "pct_mas_20": 0.0,
+   "alt_inicio_m": -2383,
+   "alt_fin_m": -2353,
+   "a_pie_2km": true,
+   "horas_a_2kmh": 0.69,
+   "linea_recta": {
+    "largo_m": 1381,
+    "pendiente_max": 14.8,
+    "pct_mas_20": 0.0,
+    "pct_15_20": 0.0
+   },
+   "arena_m": 615
+  }
+ ],
+ "total": {
+  "largo_m": 9621,
+  "sube_m": 332,
+  "baja_m": 118,
+  "arena_m": 834,
+  "pendiente_max": 14.9,
+  "recta_largo_m": 9609
+ },
+ "validacion_perseverance": {
+  "puntos": 36661,
+  "mediana": 5.2,
+  "p95": 15.5,
+  "max": 31.4,
+  "pct_mas_15": 6.52,
+  "pct_mas_20": 0.14,
+  "lectura": "Pendiente del relieve de 20 m bajo cada punto del recorrido real de Perseverance (límite de conducción: 30° de inclinación)."
+ },
+ "archivos": {
+  "calco": "riesgos/pendiente_clases_2228x2534.png",
+  "pendiente_max": "riesgos/pendiente_max_1801x2048.u8",
+  "pendiente_max_decodificar": "grados = (v - 1) / 4 ; v = 0 → sin dato ; fila 0 = norte",
+  "ruta": "riesgos/ruta_segura.geojson"
+ },
+ "hirise": {
+  "fuente": {
+   "url": "https://asc-pds-services.s3.us-west-2.amazonaws.com/mosaic/mars2020_trn/HiRISE/JEZ_hirise_soc_006_DTM_MOLAtopography_DeltaGeoid_1m_Eqc_latTs0_lon0_blend40.tif",
+   "archivo_recorte": "hirise_dtm_1m_ruta_kairos.tif",
+   "sha256_recorte": "d6a20fc26625363c2dac7a7eecc018f68097c52c4f159d3c8046de1a017f6883",
+   "resolucion_m": 1,
+   "celda_ruta_m": 2.0,
+   "proveedor": "USGS Astrogeology · Mars 2020 Terrain Relative Navigation (HiRISE, MRO)"
+  },
+  "metodo": "Pendiente con diferencias centrales en celdas de 2 m (promedio 2×2 del DTM de 1 m). Misma regla de ruta: 10° → 15° → 20°.",
+  "tramos": [
+   {
+    "tramo": 1,
+    "desde": "Octavia E. Butler",
+    "hasta": "Depósito Three Forks",
+    "umbral_usado": 10,
+    "largo_m": 2733,
+    "sube_m": 64,
+    "baja_m": 40,
+    "pendiente_max": 10.0,
+    "pendiente_media": 3.6,
+    "pct_0_10": 100.0,
+    "pct_10_15": 0.0,
+    "pct_15_20": 0.0,
+    "pct_mas_20": 0.0,
+    "a_pie_2km": false,
+    "ruta_ctx_vista_en_hirise": {
+     "largo_m": 2751,
+     "sube_m": 73,
+     "baja_m": 48,
+     "pendiente_max": 15.8,
+     "pendiente_media": 3.9,
+     "pct_0_10": 97.3,
+     "pct_10_15": 2.4,
+     "pct_15_20": 0.3,
+     "pct_mas_20": 0.0
+    }
+   },
+   {
+    "tramo": 2,
+    "desde": "Depósito Three Forks",
+    "hasta": "Frente del delta",
+    "umbral_usado": 10,
+    "largo_m": 529,
+    "sube_m": 26,
+    "baja_m": 4,
+    "pendiente_max": 10.0,
+    "pendiente_media": 5.2,
+    "pct_0_10": 100.0,
+    "pct_10_15": 0.0,
+    "pct_15_20": 0.0,
+    "pct_mas_20": 0.0,
+    "a_pie_2km": true,
+    "ruta_ctx_vista_en_hirise": {
+     "largo_m": 402,
+     "sube_m": 23,
+     "baja_m": 1,
+     "pendiente_max": 21.8,
+     "pendiente_media": 4.3,
+     "pct_0_10": 88.2,
+     "pct_10_15": 8.5,
+     "pct_15_20": 2.6,
+     "pct_mas_20": 0.7
+    }
+   },
+   {
+    "tramo": 3,
+    "desde": "Frente del delta",
+    "hasta": "Delta superior",
+    "umbral_usado": 10,
+    "largo_m": 3321,
+    "sube_m": 147,
+    "baja_m": 45,
+    "pendiente_max": 10.0,
+    "pendiente_media": 5.7,
+    "pct_0_10": 100.0,
+    "pct_10_15": 0.0,
+    "pct_15_20": 0.0,
+    "pct_mas_20": 0.0,
+    "a_pie_2km": false,
+    "ruta_ctx_vista_en_hirise": {
+     "largo_m": 2843,
+     "sube_m": 192,
+     "baja_m": 89,
+     "pendiente_max": 47.8,
+     "pendiente_media": 8.8,
+     "pct_0_10": 65.2,
+     "pct_10_15": 22.5,
+     "pct_15_20": 7.4,
+     "pct_mas_20": 4.9
+    }
+   },
+   {
+    "tramo": 4,
+    "desde": "Delta superior",
+    "hasta": "Antigua orilla · carbonatos",
+    "umbral_usado": 15,
+    "largo_m": 2644,
+    "sube_m": 101,
+    "baja_m": 64,
+    "pendiente_max": 14.9,
+    "pendiente_media": 5.2,
+    "pct_0_10": 90.1,
+    "pct_10_15": 9.9,
+    "pct_15_20": 0.0,
+    "pct_mas_20": 0.0,
+    "a_pie_2km": false,
+    "ruta_ctx_vista_en_hirise": {
+     "largo_m": 2646,
+     "sube_m": 99,
+     "baja_m": 62,
+     "pendiente_max": 20.7,
+     "pendiente_media": 5.2,
+     "pct_0_10": 91.7,
+     "pct_10_15": 7.4,
+     "pct_15_20": 0.8,
+     "pct_mas_20": 0.1
+    }
+   },
+   {
+    "tramo": 5,
+    "desde": "Antigua orilla · carbonatos",
+    "hasta": "Neretva · Cheyava Falls",
+    "umbral_usado": 15,
+    "largo_m": 1448,
+    "sube_m": 78,
+    "baja_m": 49,
+    "pendiente_max": 15.0,
+    "pendiente_media": 8.5,
+    "pct_0_10": 61.9,
+    "pct_10_15": 38.1,
+    "pct_15_20": 0.0,
+    "pct_mas_20": 0.0,
+    "a_pie_2km": true,
+    "ruta_ctx_vista_en_hirise": {
+     "largo_m": 1455,
+     "sube_m": 75,
+     "baja_m": 46,
+     "pendiente_max": 29.0,
+     "pendiente_media": 9.4,
+     "pct_0_10": 63.9,
+     "pct_10_15": 17.8,
+     "pct_15_20": 11.2,
+     "pct_mas_20": 7.1
+    }
+   }
+  ],
+  "total": {
+   "largo_m": 10675,
+   "sube_m": 416,
+   "baja_m": 202,
+   "pendiente_max": 15.0
+  }
+ }
+}

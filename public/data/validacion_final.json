@@ -1,0 +1,109 @@
+{
+ "generado_utc": "2026-11-15T08:57:05Z",
+ "aprobadas": 17,
+ "total": 17,
+ "pruebas": [
+  {
+   "grupo": "Originalidad",
+   "prueba": "Huella SHA-256 de cada archivo descargado",
+   "ok": true,
+   "detalle": "24 de 24 archivos idénticos al registro"
+  },
+  {
+   "grupo": "Fuentes",
+   "prueba": "Cada capa tiene enlace oficial",
+   "ok": true,
+   "detalle": "25 fichas"
+  },
+  {
+   "grupo": "Fuentes",
+   "prueba": "Cada capa descargada tiene huella SHA-256",
+   "ok": true,
+   "detalle": "25 con huella"
+  },
+  {
+   "grupo": "Fuentes",
+   "prueba": "Las fuentes son oficiales (NASA, JPL, USGS, PDS, IAU)",
+   "ok": true,
+   "detalle": "todas de dominios oficiales"
+  },
+  {
+   "grupo": "Exactitud",
+   "prueba": "El relieve coincide con las paradas reales del rover",
+   "ok": true,
+   "detalle": "708 paradas · 1.93 m de diferencia mediana"
+  },
+  {
+   "grupo": "Exactitud",
+   "prueba": "Las pendientes son coherentes con lo que manejó Perseverance",
+   "ok": true,
+   "detalle": "máx. 31.4° bajo el recorrido real (el rover soporta 45° y evita más de 30°)"
+  },
+  {
+   "grupo": "Seguridad",
+   "prueba": "Ninguna parte de la ruta pasa de 20° (límite NASA a pie y en rover presurizado)",
+   "ok": true,
+   "detalle": "pendiente máxima 15.0° en 10.7 km (relieve HiRISE 1 m)"
+  },
+  {
+   "grupo": "Seguridad",
+   "prueba": "Nadie camina más de 2 km lejos del vehículo",
+   "ok": true,
+   "detalle": "regla NASA EVA-EXP-0042 respetada en todos los traslados"
+  },
+  {
+   "grupo": "Seguridad",
+   "prueba": "El despegue ocurre antes de la temporada de polvo",
+   "ok": true,
+   "detalle": "despegue sol 501, polvo desde el sol 520 (19 soles de margen)"
+  },
+  {
+   "grupo": "Coherencia",
+   "prueba": "Dosis total igual en plan, ficha y simulador",
+   "ok": true,
+   "detalle": "plan 1003 · ficha 1003 · simulador 1003 mSv"
+  },
+  {
+   "grupo": "Coherencia",
+   "prueba": "La dosis coincide con el cálculo independiente de la NASA (≈1 000 mSv)",
+   "ok": true,
+   "detalle": "0.3 % de diferencia con NASA PIA17601"
+  },
+  {
+   "grupo": "Coherencia",
+   "prueba": "Fechas iguales en plan y simulador",
+   "ok": true,
+   "detalle": "2033-05-03 → 2035-09-30 · 880 días"
+  },
+  {
+   "grupo": "Meta-revisión",
+   "prueba": "Cada número de radiación tiene cita textual y página oficial",
+   "ok": true,
+   "detalle": "5 números revisados · 2 corregidos"
+  },
+  {
+   "grupo": "Meta-revisión",
+   "prueba": "Cada límite de pendiente tiene cita y documento NASA",
+   "ok": true,
+   "detalle": "4 límites con fuente"
+  },
+  {
+   "grupo": "Honestidad",
+   "prueba": "Los supuestos del simulador están etiquetados",
+   "ok": true,
+   "detalle": "12 supuestos con etiqueta"
+  },
+  {
+   "grupo": "Honestidad",
+   "prueba": "Los datos de otro lugar o pendientes están declarados",
+   "ok": true,
+   "detalle": "radiación de Gale y límites de la Luna marcados como tales"
+  },
+  {
+   "grupo": "Honestidad",
+   "prueba": "El aviso educativo está visible",
+   "ok": true,
+   "detalle": "en la portada del mapa"
+  }
+ ]
+}
